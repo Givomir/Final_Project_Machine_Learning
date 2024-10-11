@@ -1,0 +1,13 @@
+# Using the official Python Docker image
+image: python:3.11.8
+
+# Define stages of the pipeline
+stages:
+  - test  # You can define other stages like build, deploy, etc.
+
+# Define the job in the test stage
+test-job:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - python Project_ECG.ipynb  # To run a specific script
