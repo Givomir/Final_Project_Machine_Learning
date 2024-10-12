@@ -1,13 +1,14 @@
-# Using the official Python Docker image
-image: python:3.11.8
+# We don't specify any image since the shell executor will use the system's environment
 
-# Define stages of the pipeline
+# Define the stages
 stages:
-  - test  # You can define other stages like build, deploy, etc.
+  - test  # You can add more stages later (e.g., build, deploy)
 
 # Define the job in the test stage
 test-job:
   stage: test
   script:
-    - echo "Running tests..."
-    - python Project_ECG.ipynb  # To run a specific script
+    - echo "Installing dependencies..."
+    - pip install jupyter nbconvert  # Install Jupyter to execute notebooks
+    - echo "Running the notebook..."
+    - jupyter nbconvert --to notebook --execute Project_ECG.ipynb --output result.ipynb  # Execute the notebook
